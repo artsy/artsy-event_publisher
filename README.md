@@ -15,7 +15,7 @@ gem "artsy-event_publisher"
 Example initialization:
 
 ```ruby
-# config/initializers/artsy_event-publisher.rb
+# config/initializers/artsy-event_publisher.rb
 Artsy::EventPublisher.configure do |config|
   config.app_id = "my-app" # identifies RabbitMQ connection
   config.enabled = true # enable/disable publishing events
@@ -28,11 +28,12 @@ Publishing a sample event:
 
 ```ruby
 Artsy::EventPublisher.publish(
-  "auctions",
-  "bidder.pending_approval",
+  "auctions", # topic
+  "bidder.pending_approval", # routing key
   verb: "pending_approval",
   subject: {id: bidder.id.to_s, root_type: "Bidder", display: bidder.name},
-  object: {id: sale.id.to_s, root_type: "Sale", display: sale.name}
+  object: {id: sale.id.to_s, root_type: "Sale", display: sale.name},
+  properties: {url: "..."} # optional additional properties
 )
 ```
 
