@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "event_publisher/version"
+require "json"
 require "bunny"
 
 module Artsy
