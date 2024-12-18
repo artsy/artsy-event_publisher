@@ -30,10 +30,10 @@ Publishing a sample event:
 Artsy::EventPublisher.publish(
   "auctions", # topic
   "bidder.pending_approval", # routing key
-  verb: "pending_approval",
-  subject: {id: bidder.id.to_s, root_type: "Bidder", display: bidder.name},
-  object: {id: sale.id.to_s, root_type: "Sale", display: sale.name},
-  properties: {url: "..."} # optional additional properties
+  verb: "pending_approval", # action occurring
+  subject: {id: bidder.id.to_s, root_type: "Bidder", display: bidder.name}, # id and properties of the actor responsible for this event
+  object: {id: sale.id.to_s, root_type: "Sale", display: sale.name}, # id and properties of the object being acted on (created, updated, etc.)
+  properties: {url: "..."} # optional additional properties about this event or helpful for handling it
 )
 ```
 
